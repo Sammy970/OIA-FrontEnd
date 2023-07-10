@@ -9,7 +9,7 @@ const Data = () => {
   const [data, setData] = useState(null); // Initialize state to null
 
   useEffect(() => {
-    const url = "http://localhost:3000/api/fetchUserLinks";
+    const url = "https://oia-second-backend.vercel.app/api/fetchUserLinks";
     const bodyContent = {
       data: user.email,
     };
