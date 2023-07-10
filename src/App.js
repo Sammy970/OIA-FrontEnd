@@ -1,4 +1,6 @@
-import "./App.css";
+import styles from "./App.module.css";
+
+import Data from "./components/Data";
 import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
 import Profile from "./components/Profile";
@@ -9,12 +11,16 @@ function App() {
   const { isAuthenticated } = useAuth0();
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Profile />
-        <br />
-        {!isAuthenticated ? <LoginButton /> : <LogoutButton />}
-      </header>
+    <div className={styles.bg}>
+      <Profile />
+      {!isAuthenticated ? (
+        <LoginButton />
+      ) : (
+        <>
+          <LogoutButton />
+          <Data />
+        </>
+      )}
     </div>
   );
 }
