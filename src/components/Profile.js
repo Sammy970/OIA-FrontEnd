@@ -8,14 +8,14 @@ const Profile = () => {
     return <div>Loading ...</div>;
   }
 
-  console.log(user);
+  // console.log(user);
 
   return (
     isAuthenticated && (
       <div>
         {/* <p>{user.gender}</p> */}
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
+        {/* <img src={user.picture} alt={user.name} /> */}
+        {/* <h2>{user.name}</h2> */}
         <p>{user.email}</p>
       </div>
     )

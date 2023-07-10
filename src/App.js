@@ -11,16 +11,18 @@ function App() {
   const { isAuthenticated } = useAuth0();
 
   return (
-    <div className={styles.bg}>
-      <Profile />
-      {!isAuthenticated ? (
-        <LoginButton />
-      ) : (
-        <>
-          <LogoutButton />
-          <Data />
-        </>
-      )}
+    <div className={styles.App}>
+      <div className={styles["App-header"]}>
+        <Profile />
+        {!isAuthenticated ? (
+          <LoginButton />
+        ) : (
+          <>
+            <LogoutButton />
+            <Data />
+          </>
+        )}
+      </div>
     </div>
   );
 }

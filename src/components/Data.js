@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Card from "./UI/Card";
+import Form from "./Form";
 
 const Data = () => {
   const { user } = useAuth0();
@@ -36,8 +37,8 @@ const Data = () => {
 
   return (
     <div>
-      <p>Hello</p>
       <Card data={data} />
+      <Form />
     </div>
   );
 };
