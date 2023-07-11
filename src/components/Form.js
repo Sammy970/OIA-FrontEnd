@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Form = ({ setNewData }) => {
+const Form = () => {
   const { user } = useAuth0();
   const [userData, setUserData] = useState("");
   const [apiData, setApiData] = useState("");
@@ -28,14 +28,11 @@ const Form = ({ setNewData }) => {
   const handleSubmitData = (event) => {
     event.preventDefault();
     const url = `https://oia.vercel.app/generate?link=${userData}&email=${user.email}`;
+    // const url = `http://localhost:3003/generate?link=${userData}&email=${user.email}`;
     setApiUrl(url);
   };
 
-  console.log(apiData);
-
-  if (apiData !== null) {
-    setNewData(apiData.shortenedLink);
-  }
+  // console.log(apiData);
 
   return (
     <div>

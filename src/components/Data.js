@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import Card from "./UI/Card";
+import styles from "./Data.module.css";
 import Form from "./Form";
 
 const Data = () => {
@@ -8,10 +8,9 @@ const Data = () => {
 
   const [data, setData] = useState(null); // Initialize state to null
 
-  const [newData, setNewData] = useState("");
-
   useEffect(() => {
     const url = "https://oia-second-backend.vercel.app/api/fetchUserLinks";
+    // const url = "http://localhost:3000/api/fetchUserLinks";
     const bodyContent = {
       data: user.email,
     };
@@ -33,14 +32,39 @@ const Data = () => {
     };
 
     fetchData();
-  }, [user, newData]);
+  }, [user]);
 
-  //   console.log(data);
+  const clickHandlder = (event) => {
+    event.preventDefault();
+    console.log("hel");
+    console.log(event.target.id);
+  };
+
+  // To get the codes
+  // if (data !== null) {
+  //   data.map((d) => {
+  //     return console.log(Object.keys(d).toString());
+  //   });
+  // }
 
   return (
     <div>
-      <Card data={data} />
-      <Form setNewData={setNewData} />
+      {data !== null && data !== false ? (
+        data.map((d) => {
+          // console.log(d.code);
+          return (
+            <div key={Object.keys(d).toString()} className={styles.test}>
+              <p>https://oia.vercel.app/{Object.keys(d).toString()}</p>
+              <button id={Object.keys(d).toString()} onClick={clickHandlder}>
+                Del
+              </button>
+            </div>
+          );
+        })
+      ) : (
+        <h2>Add some Data</h2>
+      )}
+      <Form />
     </div>
   );
 };

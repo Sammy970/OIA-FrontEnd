@@ -1,0 +1,16 @@
+.test {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+p button:hover {
+  cursor: pointer;
+  background-color: antiquewhite;
+}
