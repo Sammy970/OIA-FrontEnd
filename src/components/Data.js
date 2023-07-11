@@ -8,6 +8,9 @@ const Data = () => {
 
   const [data, setData] = useState(null); // Initialize state to null
 
+  const [deleteCode, setDeleteCode] = useState("");
+  const [isDelete, setIsDelete] = useState("");
+
   useEffect(() => {
     const url = "https://oia-second-backend.vercel.app/api/fetchUserLinks";
     // const url = "http://localhost:3000/api/fetchUserLinks";
@@ -34,28 +37,57 @@ const Data = () => {
     fetchData();
   }, [user]);
 
-  const clickHandlder = (event) => {
+  useEffect(() => {
+    const url = "https://oia-second-backend.vercel.app/api/deleteUserLinks";
+    // const url = "http://localhost:3000/api/deleteUserLinks";
+    const bodyContent = {
+      email: user.email,
+      code: deleteCode,
+    };
+
+    const options = {
+      method: "POST",
+      body: JSON.stringify(bodyContent),
+      headers: { "Content-Type": "application/json" },
+    };
+
+    if (isDelete) {
+      const deleteData = async () => {
+        try {
+          const response = await fetch(url, options);
+          const json = await response.json();
+          console.log(json); // Update the state with fetched data
+        } catch (error) {
+          console.log("error", error);
+        }
+      };
+
+      deleteData();
+      setIsDelete(false);
+    }
+  }, [deleteCode, user.email, isDelete]);
+
+  const deleteClickHandlder = (event) => {
     event.preventDefault();
-    console.log("hel");
     console.log(event.target.id);
+    setDeleteCode(event.target.id);
+    setIsDelete(true);
   };
 
-  // To get the codes
-  // if (data !== null) {
-  //   data.map((d) => {
-  //     return console.log(Object.keys(d).toString());
-  //   });
-  // }
+  console.log(data);
 
   return (
     <div>
-      {data !== null && data !== false ? (
+      {data !== null && data !== false && data.length !== 0 ? (
         data.map((d) => {
           // console.log(d.code);
           return (
             <div key={Object.keys(d).toString()} className={styles.test}>
               <p>https://oia.vercel.app/{Object.keys(d).toString()}</p>
-              <button id={Object.keys(d).toString()} onClick={clickHandlder}>
+              <button
+                id={Object.keys(d).toString()}
+                onClick={deleteClickHandlder}
+              >
                 Del
               </button>
             </div>
