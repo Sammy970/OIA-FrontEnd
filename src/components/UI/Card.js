@@ -7,7 +7,11 @@ const Card = ({ data }) => {
     <div className={styles.card}>
       {data !== null && data !== false ? (
         data.map((d) => {
-          return <p key={d.code}>{d.code}</p>;
+          return (
+            <p key={d.code}>
+              {d - code} - {d.link}
+            </p>
+          );
         })
       ) : (
         <h2>Add some Data</h2>
