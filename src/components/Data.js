@@ -8,6 +8,8 @@ const Data = () => {
 
   const [data, setData] = useState(null); // Initialize state to null
 
+  const [newData, setNewData] = useState("");
+
   useEffect(() => {
     const url = "https://oia-second-backend.vercel.app/api/fetchUserLinks";
     const bodyContent = {
@@ -31,14 +33,14 @@ const Data = () => {
     };
 
     fetchData();
-  }, [user]);
+  }, [user, newData]);
 
   //   console.log(data);
 
   return (
     <div>
       <Card data={data} />
-      <Form />
+      <Form setNewData={setNewData} />
     </div>
   );
 };

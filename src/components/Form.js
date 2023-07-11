@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Form = () => {
+const Form = ({ setNewData }) => {
   const { user } = useAuth0();
   const [userData, setUserData] = useState("");
   const [apiData, setApiData] = useState("");
@@ -32,6 +32,10 @@ const Form = () => {
   };
 
   console.log(apiData);
+
+  if (apiData !== null) {
+    setNewData(apiData.shortenedLink);
+  }
 
   return (
     <div>
