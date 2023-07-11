@@ -9,7 +9,7 @@ const Card = ({ data }) => {
         data.map((d) => {
           return (
             <p key={d.code}>
-              {d - code} - {d.link}
+              {d.code} - {d.link}
             </p>
           );
         })
