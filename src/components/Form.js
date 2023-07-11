@@ -27,7 +27,7 @@ const Form = () => {
 
   const handleSubmitData = (event) => {
     event.preventDefault();
-    const url = `https://oia-vercel.app/generate?link=${userData}&email=${user.email}`;
+    const url = `https://oia.vercel.app/generate?link=${userData}&email=${user.email}`;
     setApiUrl(url);
   };
 
