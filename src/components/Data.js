@@ -88,7 +88,7 @@ const Data = () => {
                 id={Object.keys(d).toString()}
                 onClick={deleteClickHandlder}
               >
-                Del
+                Delete
               </button>
             </div>
           );
