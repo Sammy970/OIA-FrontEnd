@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styles from "./Data.module.css";
 import Form from "./Form";
+import Card from "./UI/Card";
 
 const Data = () => {
   const { user } = useAuth0();
@@ -74,23 +75,25 @@ const Data = () => {
     setIsDelete(true);
   };
 
-  console.log(data);
+  // console.log(data);
 
   return (
     <div>
       {data !== null && data !== false && data.length !== 0 ? (
         data.map((d) => {
           // console.log(d.code);
+
+          // console.log(d[`${Object.keys(d).toString()}`]);
+
           return (
-            <div key={Object.keys(d).toString()} className={styles.test}>
-              <p>https://oia.vercel.app/{Object.keys(d).toString()}</p>
-              <button
-                id={Object.keys(d).toString()}
-                onClick={deleteClickHandlder}
-              >
-                Delete
-              </button>
-            </div>
+            <Card
+              key={Object.keys(d).toString()}
+              className={styles.test}
+              id={Object.keys(d).toString()}
+              code={Object.keys(d).toString()}
+              deleteClickHandlder={deleteClickHandlder}
+              data={d[`${Object.keys(d).toString()}`]}
+            />
           );
         })
       ) : (
